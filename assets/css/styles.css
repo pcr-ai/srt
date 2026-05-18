@@ -60,6 +60,19 @@ p{margin:0 0 1em}
 .topbar .social a svg{flex-shrink:0;opacity:.9}
 .topbar .social a:hover{color:var(--saffron)}
 .topbar .social a:hover svg{opacity:1}
+/* Zelle highlight button */
+.topbar .social a.zelle-btn{
+  background:linear-gradient(135deg,#6d1ed4,#a020f0);
+  color:#fff;padding:4px 12px;border-radius:14px;
+  font-weight:700;letter-spacing:.02em;
+  box-shadow:0 2px 6px rgba(109,30,212,.45);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.topbar .social a.zelle-btn:hover{
+  color:#fff;transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(109,30,212,.65);
+}
+.topbar .social a.zelle-btn svg{opacity:1}
 @media (max-width:640px){
   .topbar .social{flex-wrap:wrap;white-space:normal;gap:10px}
   .topbar .social a span.label{display:none}
@@ -475,3 +488,20 @@ section{padding:64px 0}
   .slot{font-size:.6rem;padding:2px 0}
   .cal-dow div{font-size:.7rem}
 }
+
+/* ============ Zelle page ============ */
+.zelle-card{max-width:780px;margin:0 auto;background:#fff;border:1px solid #f0e1c4;border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 32px;text-align:center}
+.zelle-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#6d1ed4,#a020f0);color:#fff;font-family:'Cinzel',serif;font-size:2.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 6px 18px rgba(109,30,212,.35)}
+.zelle-card h2{color:var(--maroon);margin:0 0 6px;font-size:1.6rem}
+.zelle-card .muted{color:var(--muted);font-size:.85rem;margin-bottom:18px}
+.zelle-emails{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
+.zelle-email{display:flex;flex-direction:column;align-items:center;padding:18px;background:linear-gradient(135deg,#faf5ff,#fff);border:2px solid #e9d8f7;border-radius:12px;text-decoration:none;transition:all .25s ease}
+.zelle-email:hover{transform:translateY(-2px);border-color:#a020f0;box-shadow:0 8px 20px rgba(109,30,212,.18)}
+.zelle-email .zlabel{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#6d1ed4;font-weight:700;margin-bottom:6px}
+.zelle-email .zaddr{font-family:'Cinzel',serif;color:var(--maroon);font-size:1.05rem;word-break:break-all}
+.zelle-steps{text-align:left;background:#fff8ec;border-left:4px solid var(--saffron);border-radius:8px;padding:18px 22px;margin:24px 0}
+.zelle-steps h3{color:var(--maroon);margin:0 0 10px;font-size:1.1rem}
+.zelle-steps ol{margin:0;padding-left:20px}
+.zelle-steps li{margin-bottom:8px;line-height:1.55}
+.zelle-note{color:var(--muted);font-size:.9rem;margin:18px 0 0;text-align:center}
+@media (max-width:560px){.zelle-emails{grid-template-columns:1fr}.zelle-card{padding:24px 18px}}
