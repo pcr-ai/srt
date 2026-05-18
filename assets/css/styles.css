@@ -51,7 +51,8 @@ p{margin:0 0 1em}
   justify-content:space-between;padding:8px 20px;
 }
 .topbar .hours{display:flex;flex-wrap:wrap;gap:18px}
-.topbar .hours span strong{color:var(--gold)}
+.topbar .hours span{color:#fff;font-weight:500}
+.topbar .hours span strong{color:var(--gold);font-weight:700}
 .topbar .social{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:14px;white-space:nowrap;margin-left:auto;justify-content:flex-end;text-align:right}
 .topbar .social a{
   display:inline-flex;align-items:center;gap:5px;
