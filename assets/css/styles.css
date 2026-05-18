@@ -52,7 +52,7 @@ p{margin:0 0 1em}
 }
 .topbar .hours{display:flex;flex-wrap:wrap;gap:18px}
 .topbar .hours span strong{color:var(--gold)}
-.topbar .social{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:14px;white-space:nowrap}
+.topbar .social{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:14px;white-space:nowrap;margin-left:auto;justify-content:flex-end;text-align:right}
 .topbar .social a{
   display:inline-flex;align-items:center;gap:5px;
   color:#f7e9c8;font-size:.9rem;text-decoration:none;
