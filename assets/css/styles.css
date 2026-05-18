@@ -52,10 +52,18 @@ p{margin:0 0 1em}
 }
 .topbar .hours{display:flex;flex-wrap:wrap;gap:18px}
 .topbar .hours span strong{color:var(--gold)}
+.topbar .social{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:14px;white-space:nowrap}
 .topbar .social a{
-  color:#f7e9c8;margin-left:10px;font-size:.9rem;
+  display:inline-flex;align-items:center;gap:5px;
+  color:#f7e9c8;font-size:.9rem;text-decoration:none;
 }
+.topbar .social a svg{flex-shrink:0;opacity:.9}
 .topbar .social a:hover{color:var(--saffron)}
+.topbar .social a:hover svg{opacity:1}
+@media (max-width:640px){
+  .topbar .social{flex-wrap:wrap;white-space:normal;gap:10px}
+  .topbar .social a span.label{display:none}
+}
 
 /* ============ Header / Nav ============ */
 .site-header{
