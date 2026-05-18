@@ -35,8 +35,20 @@
     <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     <nav class="nav">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="deities.html">Deities</a>
+      <span class="has-dropdown">
+        <a href="about.html">Our Mandir</a>
+        <div class="dropdown">
+          <a href="about.html">About the Temple</a>
+          <a href="history.html">Our History</a>
+          <a href="trustees.html">Trustees & Committee</a>
+          <a href="deities.html">Deities</a>
+          <a href="about.html#panditji">Panditji Team</a>
+          <a href="volunteer.html">Volunteer</a>
+          <a href="membership.html">Membership</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="news.html">Announcements</a>
+        </div>
+      </span>
       <a href="events.html">Events</a>
       <span class="has-dropdown">
         <a href="services.html">Services</a>
@@ -112,6 +124,39 @@
   </div>
 </section>
 
+<!-- AVAILABILITY CALENDAR -->
+<section id="availability">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Live Availability</span>
+      <h2>Hall Availability Calendar</h2>
+      <p>Green slots are open · Red slots are already booked. Click any available date to pre-fill the enquiry form below.</p>
+    </div>
+
+    <div class="cal-wrap">
+      <div class="cal-head">
+        <button class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
+        <h3 id="calTitle">Month</h3>
+        <button class="cal-nav" id="calNext" aria-label="Next month">›</button>
+      </div>
+
+      <div class="cal-legend">
+        <span><i class="dot ok"></i> Available</span>
+        <span><i class="dot half"></i> Partly booked</span>
+        <span><i class="dot bad"></i> Fully booked</span>
+        <span><i class="dot past"></i> Past / Unavailable</span>
+      </div>
+
+      <div class="cal-grid cal-dow">
+        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+
+      <p class="cal-note">Slots: <b>Morning</b> 8:00 AM – 1:00 PM · <b>Evening</b> 4:00 PM – 10:00 PM. Final confirmation requires office approval and deposit.</p>
+    </div>
+  </div>
+</section>
+
 <section class="bg-cream" id="enquiry">
   <div class="container">
     <div class="section-head">
@@ -162,5 +207,128 @@
   </div>
 </footer>
 <script src="assets/js/main.js"></script>
+<script>
+/* ---------- Cultural Hall availability calendar ---------- */
+(function(){
+  // Sample bookings (would come from backend in production).
+  // Keys: 'YYYY-MM-DD' → { am:true/false, pm:true/false } where true = BOOKED
+  const BOOKINGS = {
+    // Current/upcoming sample bookings
+    '2026-05-23': {am:true,  pm:true },  // wedding all day
+    '2026-05-24': {am:false, pm:true },  // reception evening
+    '2026-05-30': {am:true,  pm:false},  // morning sanskar
+    '2026-05-31': {am:true,  pm:true },
+    '2026-06-06': {am:false, pm:true },
+    '2026-06-07': {am:true,  pm:true },
+    '2026-06-13': {am:true,  pm:true },
+    '2026-06-14': {am:false, pm:true },
+    '2026-06-20': {am:true,  pm:false},
+    '2026-06-21': {am:true,  pm:true },
+    '2026-06-27': {am:false, pm:true },
+    '2026-06-28': {am:true,  pm:true },
+    '2026-07-04': {am:true,  pm:true },
+    '2026-07-05': {am:true,  pm:true },
+    '2026-07-11': {am:false, pm:true },
+    '2026-07-12': {am:true,  pm:false},
+    '2026-07-18': {am:true,  pm:true },
+    '2026-07-25': {am:true,  pm:true },
+    '2026-08-01': {am:true,  pm:true },
+    '2026-08-08': {am:false, pm:true },
+    '2026-08-15': {am:true,  pm:true },
+    '2026-08-22': {am:true,  pm:false},
+    '2026-08-29': {am:true,  pm:true },
+    '2026-09-05': {am:true,  pm:true },
+    '2026-09-12': {am:false, pm:true },
+    '2026-09-19': {am:true,  pm:true },
+    '2026-10-03': {am:true,  pm:true },  // Dussehra weekend
+    '2026-10-04': {am:true,  pm:true },
+    '2026-11-07': {am:true,  pm:true },  // Diwali season
+    '2026-11-08': {am:true,  pm:true },
+    '2026-11-14': {am:false, pm:true }
+  };
+
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  const grid    = document.getElementById('calGrid');
+  const title   = document.getElementById('calTitle');
+  const btnPrev = document.getElementById('calPrev');
+  const btnNext = document.getElementById('calNext');
+  if(!grid) return;
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  let view = new Date(today.getFullYear(), today.getMonth(), 1);
+  // Restrict navigation: current month to +11 months out
+  const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const maxMonth = new Date(today.getFullYear(), today.getMonth()+11, 1);
+
+  function pad(n){return n<10?'0'+n:''+n;}
+  function key(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+
+  function statusFor(d){
+    if(d < today) return 'past';
+    const b = BOOKINGS[key(d)];
+    if(!b) return 'ok';
+    if(b.am && b.pm) return 'bad';
+    if(b.am || b.pm) return 'half';
+    return 'ok';
+  }
+
+  function render(){
+    title.textContent = MONTHS[view.getMonth()] + ' ' + view.getFullYear();
+    btnPrev.disabled = view <= minMonth;
+    btnNext.disabled = view >= maxMonth;
+
+    grid.innerHTML = '';
+    const firstDow = view.getDay();
+    const daysInMonth = new Date(view.getFullYear(), view.getMonth()+1, 0).getDate();
+
+    // Leading blanks
+    for(let i=0;i<firstDow;i++){
+      const c = document.createElement('div');
+      c.className = 'cal-cell empty';
+      grid.appendChild(c);
+    }
+    for(let d=1; d<=daysInMonth; d++){
+      const date = new Date(view.getFullYear(), view.getMonth(), d);
+      const st   = statusFor(date);
+      const b    = BOOKINGS[key(date)] || {};
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell ' + st;
+      cell.innerHTML =
+        '<div class="cal-day">'+d+'</div>'+
+        '<div class="cal-slots">'+
+          '<span class="slot '+ (st==='past'?'past': (b.am?'bad':'ok')) +'">AM</span>'+
+          '<span class="slot '+ (st==='past'?'past': (b.pm?'bad':'ok')) +'">PM</span>'+
+        '</div>';
+      if(st!=='past' && st!=='bad'){
+        cell.style.cursor='pointer';
+        cell.title='Click to enquire for '+key(date);
+        cell.addEventListener('click', ()=>{
+          const inp = document.getElementById('hdate');
+          if(inp){
+            inp.value = key(date);
+            inp.focus();
+            document.getElementById('enquiry').scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        });
+      }
+      grid.appendChild(cell);
+    }
+  }
+
+  btnPrev.addEventListener('click', ()=>{
+    if(view<=minMonth) return;
+    view = new Date(view.getFullYear(), view.getMonth()-1, 1);
+    render();
+  });
+  btnNext.addEventListener('click', ()=>{
+    if(view>=maxMonth) return;
+    view = new Date(view.getFullYear(), view.getMonth()+1, 1);
+    render();
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>

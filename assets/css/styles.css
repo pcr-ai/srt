@@ -270,6 +270,99 @@ section{padding:64px 0}
 .mission h2{color:#fff}
 .mission p{max-width:780px;margin:0 auto 1.4em;font-size:1.1rem}
 
+/* ============ Quick action bar (under slider) ============ */
+.quick-bar{
+  background:linear-gradient(135deg,var(--maroon),#5a1212);
+  padding:0;
+}
+.quick-bar .container{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0;
+}
+.quick-tile{
+  display:flex;align-items:center;gap:14px;
+  padding:22px 24px;color:#fff;text-decoration:none;
+  border-right:1px solid rgba(255,255,255,.12);
+  transition:background .25s ease, transform .25s ease;
+}
+.quick-tile:last-child{border-right:none}
+.quick-tile:hover{background:rgba(255,255,255,.08)}
+.quick-icon{
+  font-size:2rem;line-height:1;
+  width:54px;height:54px;flex:0 0 54px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--saffron),var(--gold));
+  border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.25);
+  transition:transform .25s ease;
+}
+.quick-tile:hover .quick-icon{transform:scale(1.08) rotate(-4deg)}
+.quick-text{display:flex;flex-direction:column;line-height:1.25}
+.quick-text b{font-family:'Cinzel',serif;font-size:1.02rem;letter-spacing:.02em}
+.quick-text small{color:rgba(255,255,255,.75);font-size:.78rem;margin-top:2px}
+@media (max-width:980px){
+  .quick-bar .container{grid-template-columns:repeat(2,1fr)}
+  .quick-tile:nth-child(2){border-right:none}
+  .quick-tile:nth-child(1),.quick-tile:nth-child(2){border-bottom:1px solid rgba(255,255,255,.12)}
+}
+@media (max-width:540px){
+  .quick-bar .container{grid-template-columns:1fr}
+  .quick-tile{border-right:none;border-bottom:1px solid rgba(255,255,255,.12)}
+  .quick-tile:last-child{border-bottom:none}
+}
+
+/* ============ Featured programs (Cultural Hall & Vidyapeeth) ============ */
+.featured-programs{padding:70px 0;background:#fffaf0}
+.feature-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px;
+}
+.feature-card{
+  position:relative;display:block;min-height:420px;
+  border-radius:var(--radius);overflow:hidden;
+  background-size:cover;background-position:center;
+  color:#fff;text-decoration:none;
+  box-shadow:var(--shadow);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.feature-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.feature-inner{
+  position:absolute;inset:0;padding:36px 32px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.feature-tag{
+  display:inline-block;align-self:flex-start;
+  background:rgba(255,255,255,.18);backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.35);
+  padding:6px 14px;border-radius:999px;
+  font-size:.85rem;font-weight:600;letter-spacing:.05em;
+  margin-bottom:14px;
+}
+.feature-card h3{
+  font-family:'Cinzel',serif;color:#fff;
+  font-size:1.6rem;line-height:1.25;margin:0 0 10px;
+  text-shadow:0 2px 12px rgba(0,0,0,.4);
+}
+.feature-card p{color:rgba(255,255,255,.92);margin:0 0 14px;font-size:.98rem;line-height:1.55}
+.feature-list{
+  list-style:none;padding:0;margin:0 0 18px;
+  display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;
+  font-size:.88rem;color:rgba(255,255,255,.92);
+}
+.feature-list li{position:relative;padding-left:16px}
+.feature-list li::before{content:"✦";position:absolute;left:0;color:var(--gold)}
+.feature-cta{
+  display:inline-block;align-self:flex-start;
+  background:var(--saffron);color:#fff;
+  padding:11px 22px;border-radius:999px;
+  font-weight:600;font-size:.95rem;
+  transition:background .2s ease, transform .2s ease;
+}
+.feature-card:hover .feature-cta{background:var(--saffron-dark);transform:translateX(4px)}
+@media (max-width:820px){
+  .feature-grid{grid-template-columns:1fr}
+  .feature-card{min-height:380px}
+  .feature-list{grid-template-columns:1fr}
+  .feature-card h3{font-size:1.35rem}
+}
+
 /* ============ Two-column content ============ */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
 .two-col .media{
@@ -334,4 +427,43 @@ section{padding:64px 0}
   .nav .dropdown a{padding:10px 8px;font-size:.9rem}
   .site-header{position:relative}
   .site-header .container{position:relative}
+}
+
+/* ============ Cultural Hall availability calendar ============ */
+.cal-wrap{max-width:980px;margin:0 auto;background:#fff;border:1px solid #f0e1c4;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 22px 28px}
+.cal-head{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:10px}
+.cal-head h3{font-family:'Cinzel',serif;color:var(--maroon);font-size:1.4rem;margin:0;min-width:200px;text-align:center}
+.cal-nav{width:38px;height:38px;border-radius:50%;border:1px solid var(--saffron);background:#fff;color:var(--saffron);font-size:1.4rem;line-height:1;cursor:pointer;transition:all .2s ease}
+.cal-nav:hover:not(:disabled){background:var(--saffron);color:#fff}
+.cal-nav:disabled{opacity:.35;cursor:not-allowed}
+.cal-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:6px 0 16px;font-size:.85rem;color:var(--muted)}
+.cal-legend .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.dot.ok{background:#2e8b57}
+.dot.half{background:#f0a020}
+.dot.bad{background:#c0392b}
+.dot.past{background:#bbb}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{margin-bottom:6px}
+.cal-dow div{text-align:center;font-weight:700;font-family:'Cinzel',serif;color:var(--maroon);font-size:.85rem;padding:6px 0;border-bottom:2px solid #f0e1c4}
+.cal-cell{min-height:74px;border:1px solid #f0e6d2;border-radius:8px;padding:6px;display:flex;flex-direction:column;justify-content:space-between;background:#fffdf8;transition:all .2s ease}
+.cal-cell.empty{border:none;background:transparent}
+.cal-cell.ok{background:#f3fbf6;border-color:#cdebd9}
+.cal-cell.half{background:#fff7e6;border-color:#f3dcb0}
+.cal-cell.bad{background:#fbeeec;border-color:#ecc6c0;opacity:.85}
+.cal-cell.past{background:#f4f4f4;border-color:#e6e6e6;color:#aaa}
+.cal-cell.ok:hover,.cal-cell.half:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(122,31,31,.12);border-color:var(--saffron)}
+.cal-day{font-weight:700;font-size:1rem;color:var(--maroon)}
+.cal-cell.past .cal-day{color:#aaa}
+.cal-slots{display:flex;gap:4px}
+.slot{flex:1;text-align:center;font-size:.7rem;font-weight:700;padding:3px 0;border-radius:4px;color:#fff;letter-spacing:.04em}
+.slot.ok{background:#2e8b57}
+.slot.bad{background:#c0392b}
+.slot.past{background:#bbb}
+.cal-note{text-align:center;color:var(--muted);font-size:.85rem;margin:18px 0 0}
+@media (max-width:640px){
+  .cal-wrap{padding:16px 10px 20px}
+  .cal-cell{min-height:62px;padding:4px}
+  .cal-day{font-size:.85rem}
+  .slot{font-size:.6rem;padding:2px 0}
+  .cal-dow div{font-size:.7rem}
 }
