@@ -76,6 +76,7 @@ p{margin:0 0 1em}
 @media (max-width:640px){
   .topbar .social{flex-wrap:wrap;white-space:normal;gap:10px}
   .topbar .social a span.label{display:none}
+  .topbar .social a.zelle-btn span.label{display:inline}
 }
 
 /* ============ Header / Nav ============ */
