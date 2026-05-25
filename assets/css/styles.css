@@ -93,12 +93,13 @@ p{margin:0 0 1em}
 }
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
 .brand .logo{
-  width:52px;height:52px;border-radius:50%;
+  width:52px;height:52px;border-radius:50%;overflow:hidden;
   background:radial-gradient(circle at 30% 30%,var(--saffron),var(--maroon));
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-family:var(--font-head);font-weight:700;font-size:1.4rem;
   box-shadow:var(--shadow);
 }
+.brand .logo img{width:100%;height:100%;object-fit:cover;display:block}
 .brand .name{display:flex;flex-direction:column;line-height:1.1}
 .brand .name b{font-family:var(--font-head);color:var(--maroon-dark);font-size:1.15rem}
 .brand .name small{color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
@@ -216,6 +217,109 @@ p{margin:0 0 1em}
 .slider .dot.active{background:var(--saffron);transform:scale(1.3)}
 @media (max-width:560px){
   .slider .arrow{width:38px;height:38px;font-size:1.1rem}
+}
+
+/* ============ Hero View Toggle ============ */
+.hero-switch{
+  display:flex;justify-content:center;gap:0;
+  background:linear-gradient(180deg,#fff7e6,#fdecc8);
+  border-bottom:1px solid rgba(122,31,31,.12);
+  padding:10px 12px;
+}
+.hero-switch-btn{
+  font:600 .82rem/1 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;
+  padding:8px 18px;border:1px solid var(--maroon);
+  background:#fff;color:var(--maroon);cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.hero-switch-btn:first-of-type{border-radius:20px 0 0 20px;border-right:none}
+.hero-switch-btn:last-of-type{border-radius:0 20px 20px 0}
+.hero-switch-btn.is-active{background:var(--maroon);color:#fff}
+.hero-switch-btn:hover:not(.is-active){background:#fff3e0}
+
+/* Show only the selected hero view */
+.hero-view-classic{display:none}
+body.hero-classic .hero-view-modern{display:none}
+body.hero-classic .hero-view-classic{display:block}
+
+/* ============ Hero Temple (homepage) ============ */
+.hero-temple{
+  position:relative;overflow:hidden;
+  min-height:clamp(520px,78vh,760px);
+  background-size:cover;background-position:center;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;color:#fff;padding:80px 20px;
+}
+.hero-temple-overlay{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at center,rgba(0,0,0,.25) 0%,rgba(86,20,20,.55) 55%,rgba(26,15,10,.85) 100%),
+    linear-gradient(135deg,rgba(122,31,31,.45),rgba(196,111,0,.35));
+  z-index:1;
+}
+.hero-temple-inner{position:relative;z-index:2;max-width:860px}
+.hero-temple .hero-logo{
+  width:130px;height:130px;margin:0 auto 22px;border-radius:50%;
+  background:#fff;padding:8px;overflow:hidden;
+  box-shadow:0 0 0 4px rgba(255,255,255,.25),0 0 0 12px rgba(196,111,0,.35),0 18px 40px rgba(0,0,0,.45);
+  animation:hero-glow 4s ease-in-out infinite;
+}
+.hero-temple .hero-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+@keyframes hero-glow{
+  0%,100%{box-shadow:0 0 0 4px rgba(255,255,255,.25),0 0 0 12px rgba(196,111,0,.35),0 18px 40px rgba(0,0,0,.45)}
+  50%   {box-shadow:0 0 0 4px rgba(255,255,255,.35),0 0 0 16px rgba(196,111,0,.55),0 22px 50px rgba(0,0,0,.55)}
+}
+.hero-temple h1{
+  color:#fff;font-size:clamp(2.2rem,5.2vw,3.8rem);
+  margin:.1em 0 .15em;text-shadow:0 3px 18px rgba(0,0,0,.55);
+  letter-spacing:.01em;
+}
+.hero-temple .hero-sanskrit{
+  font-family:var(--font-head);color:var(--gold);
+  font-size:clamp(1.05rem,1.8vw,1.35rem);letter-spacing:.05em;
+  margin:.2em auto 1em;text-shadow:0 2px 10px rgba(0,0,0,.5);opacity:.95;
+}
+.hero-temple .hero-lead{
+  font-size:clamp(1rem,1.4vw,1.15rem);max-width:640px;margin:0 auto 1.6em;
+  opacity:.95;text-shadow:0 1px 6px rgba(0,0,0,.5);line-height:1.55;
+}
+.hero-temple .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+@media (max-width:560px){
+  .hero-temple{min-height:560px;padding:60px 16px}
+  .hero-temple .hero-logo{width:100px;height:100px;margin-bottom:16px}
+}
+
+/* ============ Deity Darshan Ring ============ */
+.deity-ring{padding:50px 0 60px;background:linear-gradient(180deg,#fff,#fff8ec)}
+.deity-ring-row{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:22px 28px;
+  margin-top:10px;
+}
+.deity-orb{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  text-decoration:none;color:var(--ink);width:120px;
+  transition:transform .25s ease;
+}
+.deity-orb img{
+  width:100px;height:100px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--gold);
+  box-shadow:0 6px 18px rgba(122,31,31,.25);
+  background:#fff;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.deity-orb span{
+  font-size:.82rem;font-weight:600;text-align:center;line-height:1.25;
+  color:var(--maroon-dark);
+}
+.deity-orb:hover{transform:translateY(-4px)}
+.deity-orb:hover img{
+  border-color:var(--saffron);
+  box-shadow:0 10px 26px rgba(196,111,0,.4);
+  transform:scale(1.05);
+}
+@media (max-width:560px){
+  .deity-orb{width:96px}
+  .deity-orb img{width:78px;height:78px}
+  .deity-orb span{font-size:.75rem}
 }
 
 /* ============ Page Header (sub-pages) ============ */

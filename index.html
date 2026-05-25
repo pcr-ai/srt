@@ -8,14 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/jpeg" href="assets/img/icons/deity-ram.jpg" />
-<link rel="apple-touch-icon" href="assets/img/icons/deity-ram.jpg" />
+<link rel="icon" type="image/png" href="assets/img/icons/logo.png" />
+<link rel="apple-touch-icon" href="assets/img/icons/logo.png" />
 <meta property="og:title" content="Shree Raghunath Temple - Plano, Texas" />
 <meta property="og:description" content="A place of worship and spiritual resource center for the Hindu community of Plano and the DFW area." />
-<meta property="og:image" content="assets/img/icons/deity-ram.jpg" />
+<meta property="og:image" content="assets/img/icons/logo.png" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="assets/img/icons/deity-ram.jpg" />
+<meta name="twitter:image" content="assets/img/icons/logo.png" />
 <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -42,10 +42,10 @@
 <header class="site-header">
   <div class="container">
     <a class="brand" href="index.html">
-      <div class="logo">ॐ</div>
+      <div class="logo"><img src="assets/img/icons/logo.png" alt="Shree Raghunath Temple logo" /></div>
       <div class="name">
         <b>Shree Raghunath Temple</b>
-        <small>Plano, Texas</small>
+        <small>Your Neighborhood Temple · Plano, Texas</small>
       </div>
     </a>
     <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -85,13 +85,38 @@
   </div>
 </header>
 
-<!-- HERO SLIDER -->
-<section class="slider" aria-label="Featured">
+<!-- HERO VIEW TOGGLE -->
+<div class="hero-switch" role="group" aria-label="Choose homepage style">
+  <button type="button" class="hero-switch-btn is-active" data-view="modern" aria-pressed="true">Modern</button>
+  <button type="button" class="hero-switch-btn" data-view="classic" aria-pressed="false">Classic</button>
+</div>
+
+<!-- HERO TEMPLE (MODERN) -->
+<section class="hero-temple hero-view hero-view-modern" aria-label="Welcome to Shree Raghunath Temple"
+         style="background-image:url('assets/img/slider/panoramic-view.jpg')">
+  <div class="hero-temple-overlay"></div>
+  <div class="hero-temple-inner">
+    <div class="hero-logo">
+      <img src="assets/img/icons/logo.png" alt="Shree Raghunath Temple logo" />
+    </div>
+    <span class="hero-tag">Your Neighborhood Temple</span>
+    <h1>Shree Raghunath Temple</h1>
+    <p class="hero-sanskrit">ॐ श्री राम जय राम जय जय राम</p>
+    <p class="hero-lead">A sacred home for worship, devotion &amp; community<br/>in Plano, Texas &amp; the greater Dallas–Fort Worth area.</p>
+    <div class="cta">
+      <a href="events.html" class="btn btn-primary">View Events</a>
+      <a href="donate.html" class="btn btn-outline" style="color:#fff;border-color:#fff">Support the Temple</a>
+    </div>
+  </div>
+</section>
+
+<!-- HERO SLIDER (CLASSIC) -->
+<section class="slider hero-view hero-view-classic" aria-label="Featured">
   <div class="slides">
     <div class="slide active" style="background-image:url('assets/img/slider/shree-ram.jpg')">
       <div class="slide-content">
         <span class="hero-tag">Jai Shree Ram</span>
-        <h1>A Sacred Home for Worship,<br/>Devotion & Community</h1>
+        <h1>A Sacred Home for Worship,<br/>Devotion &amp; Community</h1>
         <p>Welcome to Shree Raghunath Temple — a spiritual resource center serving the Hindu community in Plano and the greater Dallas/Fort Worth area.</p>
         <div class="cta">
           <a href="events.html" class="btn btn-primary">View Events</a>
@@ -101,7 +126,7 @@
     </div>
     <div class="slide" style="background-image:url('assets/img/slider/panoramic-view.jpg')">
       <div class="slide-content">
-        <span class="hero-tag">Darshan & Aarti Daily</span>
+        <span class="hero-tag">Darshan &amp; Aarti Daily</span>
         <h1>Experience Daily Worship</h1>
         <p>Morning and evening aartis, abhishekams and bhajans — all are welcome to attend and participate.</p>
         <div class="cta">
@@ -123,7 +148,7 @@
     </div>
     <div class="slide" style="background-image:url('assets/img/slider/temple-event.jpg')">
       <div class="slide-content">
-        <span class="hero-tag">Festivals & Events</span>
+        <span class="hero-tag">Festivals &amp; Events</span>
         <h1>Celebrate With Our Community</h1>
         <p>From Diwali and Navratri to Ram Navami and Janmashtami — join us in joyful celebration.</p>
         <div class="cta">
@@ -134,7 +159,7 @@
     <div class="slide" style="background-image:url('assets/img/slider/temple-banner.png')">
       <div class="slide-content">
         <span class="hero-tag">Raghukul Vidyapeeth</span>
-        <h1>Classes & Cultural Learning</h1>
+        <h1>Classes &amp; Cultural Learning</h1>
         <p>Hindi classes, yoga sessions and youth programs — preserving heritage for the next generation.</p>
         <div class="cta">
           <a href="raghukul-vidyapeeth.html" class="btn btn-primary">Learn More</a>
@@ -144,7 +169,28 @@
   </div>
   <button class="arrow prev" aria-label="Previous slide">‹</button>
   <button class="arrow next" aria-label="Next slide">›</button>
-  <div class="dots" role="tablist"></div>
+  <div class="dots"></div>
+</section>
+
+<!-- DEITY DARSHAN RING -->
+<section class="deity-ring" aria-label="Our Deities">
+  <div class="container">
+    <span class="eyebrow text-center" style="display:block">Darshan</span>
+    <h2 class="text-center" style="margin-bottom:1em">Our Gods &amp; Goddesses</h2>
+    <div class="deity-ring-row">
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/deity-ram.jpg" alt="Shree Ram Parivaar" loading="lazy"/><span>Shree Ram Parivaar</span></a>
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/deity-hanuman.jpg" alt="Shree Hanuman" loading="lazy"/><span>Hanuman Ji</span></a>
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/deity-satyanarayan-katha.png" alt="Jagannatha Parivaar" loading="lazy"/><span>Jagannatha Parivaar</span></a>
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/akhand-ramayan.png" alt="Shiv Ji" loading="lazy"/><span>Shiv Ji</span></a>
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/satyanarayan-pooja.jpg" alt="Shree Krishna" loading="lazy"/><span>Shree Krishna</span></a>
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/deity-mahalakshmi.jpg" alt="Ganesha" loading="lazy"/><span>Ganesha</span></a>
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/deity-balaji.jpg" alt="Shree Balaji Parivaar" loading="lazy"/><span>Balaji Parivaar</span></a>
+      <a href="deities.html" class="deity-orb"><img src="assets/img/icons/deity-lakshmi.jpg" alt="Devi" loading="lazy"/><span>Durga · Lakshmi · Saraswati</span></a>
+    </div>
+    <div class="text-center mt-2">
+      <a href="deities.html" class="btn btn-ghost">Meet All Deities</a>
+    </div>
+  </div>
 </section>
 
 <!-- QUICK ACTIONS BAR -->
@@ -346,7 +392,7 @@
         <p><strong style="color:#fff">Daily Aarti:</strong> 12:00pm & 7:30pm</p>
       </div>
     </div>
-    <div class="legal">© <span id="year"></span> Shree Raghunath Temple, Plano, Texas · All rights reserved.</div>
+    <div class="legal">© <span id="year"></span> Shree Raghunath Temple, Plano, Texas · All rights reserved. · <a href="sitemap.html" style="color:#fff;text-decoration:underline">Sitemap</a> · <a href="privacy-policy.html" style="color:#fff;text-decoration:underline">Privacy Policy</a></div>
   </div>
 </footer>
 

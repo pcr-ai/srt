@@ -194,6 +194,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
+  // Hero view toggle (Modern / Classic) — homepage only
+  const heroSwitch = document.querySelector('.hero-switch');
+  if (heroSwitch) {
+    const btns = heroSwitch.querySelectorAll('.hero-switch-btn');
+    const saved = (function(){ try { return localStorage.getItem('srt-hero-view'); } catch(e){ return null; } })();
+    const apply = (view) => {
+      const isClassic = view === 'classic';
+      document.body.classList.toggle('hero-classic', isClassic);
+      btns.forEach(b => {
+        const active = b.dataset.view === view;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    };
+    if (saved === 'classic' || saved === 'modern') apply(saved);
+    btns.forEach(b => b.addEventListener('click', () => {
+      const v = b.dataset.view;
+      apply(v);
+      try { localStorage.setItem('srt-hero-view', v); } catch(e){}
+    }));
+  }
+
   // Hero slider
   const slider = document.querySelector('.slider');
   if (slider) {
