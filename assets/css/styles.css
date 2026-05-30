@@ -945,3 +945,37 @@ section{padding:64px 0}
 .zelle-steps li{margin-bottom:8px;line-height:1.55}
 .zelle-note{color:var(--muted);font-size:.9rem;margin:18px 0 0;text-align:center}
 @media (max-width:560px){.zelle-emails{grid-template-columns:1fr}.zelle-card{padding:24px 18px}}
+
+/* ===== DEITY DETAIL CARDS (deities.html) ===== */
+.deity-jump{background:linear-gradient(180deg,#fffaf0,#fff);border-top:1px solid #f1e2c4;border-bottom:1px solid #f1e2c4;padding:18px 0}
+.deity-jump-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.deity-jump-row a{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid #e9d6a7;border-radius:999px;background:#fff;color:var(--maroon-dark);font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s}
+.deity-jump-row a:hover{background:var(--maroon-dark);color:#fff;border-color:var(--maroon-dark);transform:translateY(-1px)}
+
+.deity-profiles{padding:50px 0}
+.deity-profile{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:36px;align-items:start;padding:36px 0;border-bottom:1px dashed #e9d6a7;scroll-margin-top:90px}
+.deity-profile:last-child{border-bottom:none}
+.deity-profile.reverse{grid-template-columns:minmax(0,1fr) minmax(0,360px)}
+.deity-profile.reverse .deity-media{order:2}
+.deity-media{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#fff8ec,#fbeed1);box-shadow:0 14px 36px rgba(122,31,31,.12),0 4px 12px rgba(0,0,0,.05);aspect-ratio:4/5}
+.deity-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.deity-media:hover img{transform:scale(1.04)}
+.deity-media::after{content:"";position:absolute;inset:0;border-radius:16px;box-shadow:inset 0 0 0 4px rgba(255,255,255,.5);pointer-events:none}
+.deity-body .eyebrow{margin-bottom:6px}
+.deity-body h2{color:var(--maroon-dark);margin:0 0 .25em;font-size:1.85rem;line-height:1.2}
+.deity-body h2 .sanskrit{display:block;font-family:var(--font-head);font-size:1.1rem;font-weight:500;color:#a37810;margin-top:6px;letter-spacing:.04em}
+.deity-body > p{color:#3a2a14;line-height:1.75;margin:0 0 1em}
+.deity-mantra{background:linear-gradient(135deg,#fff7e0,#fff);border-left:4px solid var(--gold);border-radius:6px;padding:14px 18px;margin:14px 0;font-family:var(--font-head);color:var(--maroon-dark);font-size:1.02rem;font-style:italic}
+.deity-mantra small{display:block;font-family:var(--font-body);font-style:normal;color:var(--muted);font-size:.8rem;margin-top:6px;letter-spacing:.02em}
+.deity-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
+.deity-meta-item{background:#fff;border:1px solid #f0e1c4;border-radius:10px;padding:12px 14px}
+.deity-meta-item b{display:block;font-size:.72rem;letter-spacing:.12em;color:#a37810;text-transform:uppercase;margin-bottom:4px}
+.deity-meta-item span{color:var(--maroon-dark);font-size:.92rem;font-weight:600;line-height:1.3}
+.deity-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.deity-actions .btn{font-size:.88rem;padding:9px 18px}
+@media (max-width:760px){
+  .deity-profile,.deity-profile.reverse{grid-template-columns:1fr;gap:20px}
+  .deity-profile.reverse .deity-media{order:0}
+  .deity-media{aspect-ratio:1/1;max-width:340px;margin:0 auto}
+  .deity-body h2{font-size:1.5rem}
+}
