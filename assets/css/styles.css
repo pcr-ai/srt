@@ -1016,3 +1016,15 @@ body.event-pop-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   .event-pop-box,.event-slide.is-active,.event-pop-backdrop,.event-reopen{animation:none}
 }
+
+/* ============ Share buttons ============ */
+.share-label{font-weight:600;color:var(--maroon-dark);margin:14px 0 8px}
+.share-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.share-btn{color:#fff;border:none;font-weight:600}
+.share-btn:hover{color:#fff;filter:brightness(1.06)}
+.share-wa{background:#25d366}
+.share-fb{background:#1877f2}
+.share-tg{background:#0088cc}
+.share-email{background:var(--maroon)}
+.share-copy{background:var(--saffron-dark)}
+.share-copy:hover{color:#fff}

@@ -121,9 +121,18 @@
       <span class="eyebrow">Jai Jagannath</span>
       <h2>Save The Date - Thursday, 16 July 2026</h2>
       <p>Shree Raghunath Temple invites devotees and families to a grand Ratha Yatra celebration with sankirtan, devotion and mahaprasad.</p>
-      <div class="ratha-actions">
-        <a href="https://www.facebook.com/srtplano" class="btn btn-primary" target="_blank" rel="noopener">Share On Facebook</a>
-        <button type="button" class="btn btn-outline" onclick="window.print()">Print Flyer</button>
+      <p class="share-label">📣 Help spread the word — share with family &amp; friends:</p>
+      <div class="ratha-actions share-row">
+        <a class="btn share-btn share-wa" target="_blank" rel="noopener"
+           href="https://wa.me/?text=Jai%20Jagannath!%20%F0%9F%9A%A9%20Join%20the%20grand%20Ratha%20Yatra%202026%20on%20Thursday%2C%2016%20July%202026%20at%20Shree%20Raghunath%20Temple%2C%20Plano.%20Details%3A%20https%3A%2F%2Fraghunathtemple.org%2Fratha-yatra-2026.html">WhatsApp</a>
+        <a class="btn share-btn share-fb" target="_blank" rel="noopener"
+           href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fraghunathtemple.org%2Fratha-yatra-2026.html">Facebook</a>
+        <a class="btn share-btn share-tg" target="_blank" rel="noopener"
+           href="https://t.me/share/url?url=https%3A%2F%2Fraghunathtemple.org%2Fratha-yatra-2026.html&text=Jai%20Jagannath!%20Ratha%20Yatra%202026%20%E2%80%94%2016%20July%202026%20at%20Shree%20Raghunath%20Temple%2C%20Plano">Telegram</a>
+        <a class="btn share-btn share-email"
+           href="mailto:?subject=Ratha%20Yatra%202026%20-%20Shree%20Raghunath%20Temple&body=Jai%20Jagannath!%20Join%20the%20grand%20Ratha%20Yatra%20on%20Thursday%2C%2016%20July%202026%20at%20Shree%20Raghunath%20Temple%2C%20Plano.%20Details%3A%20https%3A%2F%2Fraghunathtemple.org%2Fratha-yatra-2026.html">Email</a>
+        <button type="button" class="btn share-btn share-copy" data-copy="https://raghunathtemple.org/ratha-yatra-2026.html">Copy Link</button>
+        <button type="button" class="btn btn-ghost" onclick="window.print()">Print Flyer</button>
         <a href="ratha-yatra-archive.html" class="btn btn-ghost">View Photo Archive</a>
       </div>
     </div>
@@ -315,5 +324,23 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script>
+  // One-tap "Copy Link" for share buttons
+  document.querySelectorAll('.share-copy[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = btn.getAttribute('data-copy');
+      var done = function () {
+        var old = btn.textContent;
+        btn.textContent = 'Link Copied!';
+        setTimeout(function () { btn.textContent = old; }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(function () { window.prompt('Copy this link:', url); });
+      } else {
+        window.prompt('Copy this link:', url);
+      }
+    });
+  });
+</script>
 </body>
 </html>
