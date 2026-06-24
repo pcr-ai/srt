@@ -19,6 +19,88 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="assets/img/icons/logo.png" />
 <link rel="stylesheet" href="assets/css/styles.css" />
+
+<!-- ============================================================
+     EVENT STRUCTURED DATA  (helps events appear in Google search)
+     For each new event, copy one { ... } block inside "@graph",
+     and update: name, startDate, endDate, image, description, url.
+     Dates use ISO format:  2026-06-25T18:30:00-05:00  (-05:00 = Central/CDT)
+     Tip: test it at https://search.google.com/test/rich-results
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["HinduTemple", "PlaceOfWorship"],
+      "@id": "https://raghunathtemple.org/#temple",
+      "name": "Shree Raghunath Temple",
+      "url": "https://raghunathtemple.org/",
+      "logo": "https://raghunathtemple.org/assets/img/icons/logo.png",
+      "image": "https://raghunathtemple.org/assets/img/icons/logo.png",
+      "telephone": "+1-469-640-5699",
+      "email": "srtplano@gmail.com",
+      "sameAs": ["https://www.facebook.com/srtplano"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "8901 Independence Pkwy",
+        "addressLocality": "Plano",
+        "addressRegion": "TX",
+        "postalCode": "75025",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "Event",
+      "name": "Nirjala Ekadashi — Vishnu Sahasranaam Path",
+      "startDate": "2026-06-25T18:30:00-05:00",
+      "endDate": "2026-06-25T20:30:00-05:00",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "image": "https://raghunathtemple.org/assets/img/events/nirjala-ekadashi-2026.jpg",
+      "description": "Vishnu Sahasranaam Path at 6:30 PM followed by Aarti. Observing Nirjala Ekadashi with devotion brings immense spiritual merit.",
+      "url": "https://raghunathtemple.org/events.html",
+      "location": {
+        "@type": "Place",
+        "name": "Shree Raghunath Temple",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8901 Independence Pkwy",
+          "addressLocality": "Plano",
+          "addressRegion": "TX",
+          "postalCode": "75025",
+          "addressCountry": "US"
+        }
+      },
+      "organizer": { "@type": "Organization", "name": "Shree Raghunath Temple", "url": "https://raghunathtemple.org/" }
+    },
+    {
+      "@type": "Event",
+      "name": "Devasnana Purnima — Shree Jagannatha's Snana Yatra & Hathi Besa",
+      "startDate": "2026-06-29T18:00:00-05:00",
+      "endDate": "2026-06-29T20:30:00-05:00",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "image": "https://raghunathtemple.org/assets/img/events/devasnana-purnima-2026.jpg",
+      "description": "Shree Jagannatha's Snana, Hathi Besa, Chappan Bhog and Aarti followed by Mahaprasad at 6:00 PM.",
+      "url": "https://raghunathtemple.org/events.html",
+      "location": {
+        "@type": "Place",
+        "name": "Shree Raghunath Temple",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8901 Independence Pkwy",
+          "addressLocality": "Plano",
+          "addressRegion": "TX",
+          "postalCode": "75025",
+          "addressCountry": "US"
+        }
+      },
+      "organizer": { "@type": "Organization", "name": "Shree Raghunath Temple", "url": "https://raghunathtemple.org/" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -518,6 +600,36 @@
     <div class="legal">© <span id="year"></span> Shree Raghunath Temple, Plano, Texas · All rights reserved. · <a href="sitemap.html" style="color:#fff;text-decoration:underline">Sitemap</a> · <a href="privacy-policy.html" style="color:#fff;text-decoration:underline">Privacy Policy</a></div>
   </div>
 </footer>
+
+<!-- ============================================================
+     EVENT FLYER POPUP  ("flash" on homepage)
+     The flyer images live in:  assets/img/events/
+     To add/replace flyers, just edit the SRT_EVENTS list below.
+     ============================================================ -->
+<div class="event-pop" id="eventPop" hidden role="dialog" aria-modal="true" aria-label="Upcoming temple events">
+  <div class="event-pop-backdrop" data-close></div>
+  <div class="event-pop-box">
+    <button class="event-pop-close" data-close aria-label="Close">&times;</button>
+    <div class="event-pop-track" id="eventPopTrack"><!-- flyers injected by JS --></div>
+    <button class="event-pop-arrow prev" id="eventPopPrev" aria-label="Previous flyer">&lsaquo;</button>
+    <button class="event-pop-arrow next" id="eventPopNext" aria-label="Next flyer">&rsaquo;</button>
+    <div class="event-pop-dots" id="eventPopDots"></div>
+    <div class="event-pop-foot">
+      <a href="events.html" class="btn btn-primary">All Events &amp; Calendar</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== EVENT FLYERS — EDIT THIS LIST ======
+     Add one line per flyer (newest first). Drop the image file into
+     assets/img/events/ then add it here. Any flyer whose image is not
+     uploaded yet is skipped automatically (no broken pictures). -->
+<script>
+  window.SRT_EVENTS = [
+    { img: 'assets/img/events/nirjala-ekadashi-2026.jpg',  alt: 'Nirjala Ekadashi — 25 June 2026',          link: 'events.html' },
+    { img: 'assets/img/events/devasnana-purnima-2026.jpg', alt: 'Devasnana Purnima / Snana Yatra — 29 June 2026', link: 'events.html' }
+  ];
+</script>
 
 <script src="assets/js/main.js"></script>
 <!-- Facebook SDK — powers the live/timeline embed above -->

@@ -262,4 +262,114 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
     });
   });
+
+  // ============================================================
+  // Event flyer popup ("flash" on homepage)
+  // Reads the flyer list from window.SRT_EVENTS (defined in index.html).
+  // Only flyers whose image actually loads are shown — so unuploaded
+  // images are skipped silently (no broken pictures).
+  // ============================================================
+  (function () {
+    const pop = document.getElementById('eventPop');
+    const cfg = Array.isArray(window.SRT_EVENTS) ? window.SRT_EVENTS : [];
+    if (!pop || !cfg.length) return;
+
+    const track    = document.getElementById('eventPopTrack');
+    const dotsWrap = document.getElementById('eventPopDots');
+    const prevBtn  = document.getElementById('eventPopPrev');
+    const nextBtn  = document.getElementById('eventPopNext');
+
+    let idx = 0, timer = null;
+    const slides = [], dots = [];
+
+    // Preload each image; keep only the ones that load successfully.
+    let pending = cfg.length;
+    const ready = new Array(cfg.length).fill(undefined);
+    cfg.forEach((item, i) => {
+      const probe = new Image();
+      probe.onload  = () => { ready[i] = item; settle(); };
+      probe.onerror = () => { ready[i] = null; settle(); };
+      probe.src = item.img;
+    });
+
+    function settle() {
+      if (--pending > 0) return;
+      const list = ready.filter(Boolean);
+      if (list.length) build(list);
+    }
+
+    function build(list) {
+      list.forEach((item, i) => {
+        const a = document.createElement('a');
+        a.className = 'event-slide' + (i === 0 ? ' is-active' : '');
+        a.href = item.link || 'events.html';
+        const img = document.createElement('img');
+        img.src = item.img;
+        img.alt = item.alt || 'Temple event flyer';
+        a.appendChild(img);
+        track.appendChild(a);
+        slides.push(a);
+
+        const d = document.createElement('button');
+        d.className = 'event-dot' + (i === 0 ? ' is-active' : '');
+        d.setAttribute('aria-label', 'Flyer ' + (i + 1));
+        d.addEventListener('click', (e) => { e.preventDefault(); go(i, true); });
+        dotsWrap.appendChild(d);
+        dots.push(d);
+      });
+
+      const multi = slides.length > 1;
+      dotsWrap.style.display = multi ? '' : 'none';
+      if (prevBtn) prevBtn.style.display = multi ? '' : 'none';
+      if (nextBtn) nextBtn.style.display = multi ? '' : 'none';
+
+      // Show automatically once per browser session.
+      let seen = false;
+      try { seen = sessionStorage.getItem('srt-events-seen') === '1'; } catch (e) {}
+      if (!seen) open();
+
+      // Floating button so visitors can re-open the flyers anytime.
+      const reopen = document.createElement('button');
+      reopen.type = 'button';
+      reopen.className = 'event-reopen';
+      reopen.innerHTML = '<span>\uD83D\uDCE3</span> Events';
+      reopen.addEventListener('click', open);
+      document.body.appendChild(reopen);
+    }
+
+    function go(i, manual) {
+      slides[idx].classList.remove('is-active');
+      if (dots[idx]) dots[idx].classList.remove('is-active');
+      idx = (i + slides.length) % slides.length;
+      slides[idx].classList.add('is-active');
+      if (dots[idx]) dots[idx].classList.add('is-active');
+      if (manual) restart();
+    }
+    function restart() {
+      if (slides.length < 2) return;
+      clearInterval(timer);
+      timer = setInterval(() => go(idx + 1), 4500);
+    }
+    function open() {
+      pop.hidden = false;
+      document.body.classList.add('event-pop-open');
+      restart();
+      try { sessionStorage.setItem('srt-events-seen', '1'); } catch (e) {}
+    }
+    function close() {
+      pop.hidden = true;
+      document.body.classList.remove('event-pop-open');
+      clearInterval(timer);
+    }
+
+    pop.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+    if (prevBtn) prevBtn.addEventListener('click', () => go(idx - 1, true));
+    if (nextBtn) nextBtn.addEventListener('click', () => go(idx + 1, true));
+    document.addEventListener('keydown', (e) => {
+      if (pop.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') go(idx - 1, true);
+      else if (e.key === 'ArrowRight') go(idx + 1, true);
+    });
+  })();
 });

@@ -979,3 +979,40 @@ section{padding:64px 0}
   .deity-media{aspect-ratio:1/1;max-width:340px;margin:0 auto}
   .deity-body h2{font-size:1.5rem}
 }
+
+/* ============ Event flyer popup ("flash") ============ */
+body.event-pop-open{overflow:hidden}
+.event-pop{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+.event-pop[hidden]{display:none}
+.event-pop-backdrop{position:absolute;inset:0;background:rgba(28,12,12,.78);backdrop-filter:blur(3px);animation:evPopFade .3s ease}
+.event-pop-box{position:relative;width:auto;max-width:min(92vw,460px);max-height:92vh;display:flex;flex-direction:column;align-items:center;animation:evPopIn .35s cubic-bezier(.2,.8,.3,1)}
+.event-pop-track{position:relative;width:100%;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.5);background:#2a1212}
+.event-slide{display:none;line-height:0}
+.event-slide.is-active{display:block;animation:evPopFade .4s ease}
+.event-slide img{width:100%;height:auto;max-height:78vh;object-fit:contain;display:block}
+.event-pop-close{position:absolute;top:-14px;right:-14px;width:40px;height:40px;border-radius:50%;border:2px solid #fff;background:var(--maroon);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;z-index:3;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:transform .2s ease,background .2s ease}
+.event-pop-close:hover{background:var(--maroon-dark);transform:scale(1.08)}
+.event-pop-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:background .2s ease}
+.event-pop-arrow:hover{background:var(--maroon)}
+.event-pop-arrow.prev{left:10px}
+.event-pop-arrow.next{right:10px}
+.event-pop-dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.event-dot{width:11px;height:11px;border-radius:50%;border:none;background:rgba(255,255,255,.45);cursor:pointer;padding:0;transition:background .2s ease,transform .2s ease}
+.event-dot.is-active{background:var(--gold);transform:scale(1.2)}
+.event-pop-foot{margin-top:14px}
+.event-pop-foot .btn{box-shadow:0 6px 18px rgba(0,0,0,.35)}
+/* floating re-open button */
+.event-reopen{position:fixed;left:18px;bottom:18px;z-index:900;display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--saffron),var(--maroon));color:#fff;font:600 .9rem/1 var(--font-body);padding:11px 16px;border-radius:30px;box-shadow:0 8px 22px rgba(122,31,31,.4);animation:evPulse 2.2s ease-in-out infinite}
+.event-reopen span{font-size:1.05rem}
+.event-reopen:hover{color:#fff;filter:brightness(1.06)}
+@keyframes evPopFade{from{opacity:0}to{opacity:1}}
+@keyframes evPopIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes evPulse{0%,100%{box-shadow:0 8px 22px rgba(122,31,31,.4)}50%{box-shadow:0 8px 30px rgba(242,145,0,.7)}}
+@media (max-width:520px){
+  .event-pop{padding:16px}
+  .event-pop-close{top:-10px;right:-6px;width:36px;height:36px}
+  .event-reopen{left:12px;bottom:12px;padding:10px 14px;font-size:.85rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .event-pop-box,.event-slide.is-active,.event-pop-backdrop,.event-reopen{animation:none}
+}
