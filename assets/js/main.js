@@ -271,7 +271,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================================
   (function () {
     const pop = document.getElementById('eventPop');
-    const cfg = Array.isArray(window.SRT_EVENTS) ? window.SRT_EVENTS : [];
+    const all = Array.isArray(window.SRT_EVENTS) ? window.SRT_EVENTS : [];
+
+    // Auto-expire: hide any flyer whose date has passed.
+    // Each event may have `date` (and optional `until`) as 'YYYY-MM-DD'.
+    // The flyer stays visible through the END of that day, then disappears
+    // automatically — no manual editing needed once the event is over.
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const cfg = all.filter((item) => {
+      const end = item.until || item.date;
+      if (!end) return true;                 // no date given → always show
+      const d = new Date(end + 'T23:59:59');
+      return !isNaN(d) && d >= today;        // keep only today or future
+    });
     if (!pop || !cfg.length) return;
 
     const track    = document.getElementById('eventPopTrack');
@@ -323,10 +335,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (prevBtn) prevBtn.style.display = multi ? '' : 'none';
       if (nextBtn) nextBtn.style.display = multi ? '' : 'none';
 
-      // Show automatically once per browser session.
-      let seen = false;
-      try { seen = sessionStorage.getItem('srt-events-seen') === '1'; } catch (e) {}
-      if (!seen) open();
+      // Show automatically every time the homepage loads.
+      open();
 
       // Floating button so visitors can re-open the flyers anytime.
       const reopen = document.createElement('button');
@@ -354,7 +364,6 @@ document.addEventListener('DOMContentLoaded', () => {
       pop.hidden = false;
       document.body.classList.add('event-pop-open');
       restart();
-      try { sessionStorage.setItem('srt-events-seen', '1'); } catch (e) {}
     }
     function close() {
       pop.hidden = true;
