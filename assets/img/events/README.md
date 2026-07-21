@@ -54,14 +54,15 @@ with the event name, date and image. Google uses this to show your event as a
 rich result when people search for the temple. See the notes in that block.
 
 ## Current flyers expected here
-- `bhajan-sandhya-children-2026.jpg` — Bhajan Sandhya by Children, 11 July 2026
-- `khatu-shyam-kirtan-2026.jpg`      — Khatu Shyam Baba Kirtan, 12 July 2026
-- `netra-utsav-2026.jpg`             — Netra Utsav / Naba Jaubana, 14 July 2026
-- `ratha-yatra-2026.jpg`             — Shree Jagannatha Rath Yatra, 16 July 2026
-- `hera-panchami-2026.jpg`           — Hera Panchami Puja, 20 July 2026
+- `bahuda-yatra-2026.jpg`            — Shree Jagannatha Bahuda Yatra, 24 July 2026
 
 ## Archived flyers
 Past event flyers are moved into the **`archive/`** subfolder once the event is
 over, and are linked from `past-events.html`:
-- `archive/nirjala-ekadashi-2026.jpg`   — Nirjala Ekadashi, 25 June 2026
-- `archive/devasnana-purnima-2026.jpg`  — Devasnana Purnima / Snana Yatra, 29 June 2026
+- `archive/nirjala-ekadashi-2026.jpg`      — Nirjala Ekadashi, 25 June 2026
+- `archive/devasnana-purnima-2026.jpg`     — Devasnana Purnima / Snana Yatra, 29 June 2026
+- `archive/bhajan-sandhya-children-2026.jpg` — Bhajan Sandhya by Children, 11 July 2026
+- `archive/khatu-shyam-kirtan-2026.jpg`    — Khatu Shyam Baba Kirtan, 12 July 2026
+- `archive/netra-utsav-2026.jpg`           — Netra Utsav / Naba Jaubana, 14 July 2026
+- `archive/ratha-yatra-2026.jpg`           — Shree Jagannatha Rath Yatra, 16 July 2026
+- `archive/hera-panchami-2026.jpg`         — Hera Panchami Puja, 20 July 2026

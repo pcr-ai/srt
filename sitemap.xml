@@ -127,6 +127,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raghunathtemple.org/feedback.html</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raghunathtemple.org/ratha-yatra-2026.html</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>weekly</changefreq>
