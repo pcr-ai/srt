@@ -348,6 +348,59 @@
         </div>
       </details>
     </section>
+
+    <!-- 2026 RATHA YATRA - CHARIOT PULL (EVENT DAY) -->
+    <section class="ratha-gallery" aria-label="2026 Ratha Yatra Chariot Pull" style="margin-top:48px">
+      <h3 class="ratha-gallery-title">Ratha Yatra 2026 &mdash; Jai Jagannath!</h3>
+      <p class="ratha-gallery-credit" style="margin-top:-6px">Glimpses from the grand Ratha Yatra celebration on 16 July 2026 &mdash; the divine Pahandi procession, resplendent darshan and thousands of devotees joyfully pulling the chariot of Shree Jagannath, Balabhadra &amp; Subhadra through Plano. Tap any photo to enlarge.</p>
+      <details class="step-collapse">
+        <summary>&#127950; View Ratha Yatra photos &amp; videos &mdash; 16 July 2026<span class="step-hint">Click to expand and see all photos &amp; videos</span></summary>
+        <h4 style="text-align:center;color:var(--maroon-dark);margin:22px 0 10px;font-family:var(--font-head)">Videos</h4>
+        <div class="ratha-gallery-grid" id="rathaPull2026Videos"></div>
+        <h4 style="text-align:center;color:var(--maroon-dark);margin:26px 0 10px;font-family:var(--font-head)">Photos</h4>
+        <div class="ratha-gallery-grid" id="rathaPull2026Photos"></div>
+      </details>
+      <script>
+        (function () {
+          var base = 'assets/img/ratha-yatra/2026/ratha-pull/';
+          var alt = 'Ratha Yatra 2026 chariot pull at Shree Raghunath Temple, Plano - 16 July 2026';
+          var videos = ['pull-1.mp4', 'pull-2.mp4', 'pull-3.mp4', 'pull-4.mp4', 'pull-5.mp4'];
+          var photos = [
+            'DSCF5913','DSCF5914','DSCF5915','DSCF5916','DSCF5917','DSCF5919','DSCF5920','DSCF5921','DSCF5922','DSCF5925',
+            'DSCF5927','DSCF5928','DSCF5930','DSCF5931','DSCF5932','DSCF5933','DSCF5934','DSCF5935','DSCF5936','DSCF5938',
+            'DSCF5940','DSCF5941','DSCF5942','DSCF5943','DSCF5945','DSCF5947','DSCF5948','DSCF5949','DSCF5950','DSCF5951',
+            'DSCF5952','DSCF5953','DSCF5954','DSCF5955','DSCF5957','DSCF5958','DSCF5959','DSCF5961','DSCF5963','DSCF5966',
+            'DSCF5967','DSCF5968','DSCF5969','DSCF5970','DSCF5971','DSCF5972','DSCF5973','DSCF5974','DSCF5975','DSCF5976',
+            'DSCF5977','DSCF5978','DSCF5980','DSCF5981','DSCF5983','DSCF5984','DSCF5985','DSCF5986','DSCF5987','DSCF5988',
+            'DSCF5989','DSCF5990','DSCF5992','DSCF5993','DSCF5994','DSCF5995','DSCF5996','DSCF5997','DSCF5998','DSCF5999',
+            'DSCF6001','DSCF6002','DSCF6003','DSCF6004','DSCF6005','DSCF6006','DSCF6007','DSCF6008','DSCF6009','DSCF6010',
+            'DSCF6011','DSCF6012','DSCF6013','DSCF6014','DSCF6015','DSCF6016','DSCF6019','DSCF6020','DSCF6022','DSCF6023',
+            'DSCF6024','DSCF6025','DSCF6026','DSCF6027','DSCF6028','DSCF6029','DSCF6030','DSCF6031','DSCF6032','DSCF6033',
+            'DSCF6034','DSCF6036','DSCF6037','DSCF6038','DSCF6039','DSCF6040','DSCF6042','DSCF6043','DSCF6044','DSCF6045',
+            'DSCF6046','DSCF6047','DSCF6048','DSCF6049','DSCF6050','DSCF6051','DSCF6052','DSCF6053','DSCF6054','DSCF6055',
+            'DSCF6056','DSCF6057','DSCF6058','DSCF6059','DSCF6060','DSCF6061','DSCF6062','DSCF6063','DSCF6064','DSCF6065',
+            'DSCF6066','DSCF6067','DSCF6068','DSCF6069','DSCF6070','DSCF6071','DSCF6072','DSCF6073','DSCF6074','DSCF6075',
+            'DSCF6076','DSCF6077','DSCF6078','DSCF6079','DSCF6081','DSCF6082','DSCF6083','DSCF6084','DSCF6085','DSCF6086',
+            'DSCF6087','DSCF6088','DSCF6089','DSCF6090','DSCF6091','DSCF6092','DSCF6093','DSCF6094','DSCF6095','DSCF6096',
+            'DSCF6097','DSCF6098','DSCF6100','DSCF6101','DSCF6102','DSCF6103','DSCF6104','DSCF6106','DSCF6107','DSCF6108',
+            'DSCF6111','DSCF6112','DSCF6115','DSCF6117','DSCF6119','DSCF6122','DSCF6124','DSCF6125','DSCF6128','DSCF6129',
+            'DSCF6130','DSCF6131','DSCF6132'
+          ];
+          var vHtml = videos.map(function (f) {
+            return '<figure style="grid-column:1 / -1"><video controls preload="metadata" style="width:100%;height:auto;border-radius:12px;background:#000"><source src="' + base + f + '" type="video/mp4" />Your browser does not support embedded video.</video></figure>';
+          }).join('');
+          var pHtml = photos.map(function (n) {
+            var src = base + n + '.JPG';
+            return '<figure><a href="' + src + '" target="_blank" rel="noopener"><img src="' + src + '" alt="' + alt + '" loading="lazy"/></a></figure>';
+          }).join('');
+          var vEl = document.getElementById('rathaPull2026Videos');
+          var pEl = document.getElementById('rathaPull2026Photos');
+          if (vEl) vEl.innerHTML = vHtml;
+          if (pEl) pEl.innerHTML = pHtml;
+        })();
+      </script>
+    </section>
+
     <section class="ratha-2025" aria-label="Glimpse from 2025 Ratha Yatra">
       <div class="ratha-2025-inner">
         <figure class="ratha-2025-photo">
