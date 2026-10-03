@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Shree Raghunath Temple</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/icons/logo.png" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="admin-body">
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <div class="logo"><img src="assets/img/icons/logo.png" alt="Shree Raghunath Temple logo" /></div>
+      <div class="name"><b>Shree Raghunath Temple</b><small>Admin · Flyer Manager</small></div>
+    </a>
+    <a href="index.html" class="btn btn-ghost">← Back to Site</a>
+  </div>
+</header>
+
+<main class="admin-wrap">
+  <div class="container">
+
+    <!-- ===== LOGIN ===== -->
+    <section id="loginView" class="admin-card admin-login">
+      <div class="admin-lock">🔒</div>
+      <h1>Admin Sign In</h1>
+      <p class="admin-muted">Authorised temple administrators only.</p>
+      <form id="loginForm" autocomplete="off">
+        <label for="user">Username</label>
+        <input id="user" type="text" required autocomplete="username" />
+        <label for="pass">Password</label>
+        <input id="pass" type="password" required autocomplete="current-password" />
+        <button class="btn btn-primary" type="submit">Sign In</button>
+        <p id="loginMsg" class="admin-status"></p>
+      </form>
+    </section>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <section id="adminView" hidden>
+      <div class="admin-topline">
+        <div><span class="eyebrow">Flyer Manager</span><h1>Upload a Homepage Flyer</h1></div>
+        <button id="logoutBtn" class="btn btn-ghost" type="button">Log out</button>
+      </div>
+
+      <div class="admin-grid">
+        <!-- Upload form -->
+        <div class="admin-card">
+          <h2>New Flyer</h2>
+          <form id="publishForm" autocomplete="off">
+            <label for="flyerFile">Flyer image (JPG / PNG)</label>
+            <input id="flyerFile" type="file" accept="image/*" required />
+            <div id="preview" class="admin-preview"></div>
+
+            <label for="flyerName">File name (no spaces)</label>
+            <input id="flyerName" type="text" placeholder="e.g. diwali-2026" />
+
+            <label for="flyerAlt">Title / description</label>
+            <input id="flyerAlt" type="text" placeholder="e.g. Diwali Mahotsav — 7 Nov 2026" />
+
+            <div class="admin-row">
+              <div>
+                <label for="flyerDate">Show until (auto-hides after)</label>
+                <input id="flyerDate" type="date" required />
+              </div>
+              <div>
+                <label for="flyerLink">Link when clicked</label>
+                <input id="flyerLink" type="text" value="events.html" />
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Publish Flyer</button>
+            <p id="publishMsg" class="admin-status"></p>
+          </form>
+
+          <div id="snippetBox" class="admin-snippet" hidden>
+            <p class="admin-muted">Manual publish — the image was downloaded. Commit it to the repo and paste this into <code>index.html</code>:</p>
+            <textarea id="snippet" rows="6" readonly></textarea>
+            <button id="copySnippet" class="btn btn-ghost" type="button">Copy snippet</button>
+          </div>
+        </div>
+
+        <!-- Current flyers -->
+        <div class="admin-side">
+          <div class="admin-card">
+            <h2>Current Flyers</h2>
+            <div id="flyerList" class="flyer-list"></div>
+            <p class="admin-muted">Expired flyers are moved to <code>assets/img/events/archive/</code> automatically by the scheduled job.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="legal">© <span id="year"></span> Shree Raghunath Temple, Plano, Texas · Admin area · <a href="index.html" style="color:#fff;text-decoration:underline">Back to Site</a></div>
+  </div>
+</footer>
+
+<script src="assets/js/admin.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
