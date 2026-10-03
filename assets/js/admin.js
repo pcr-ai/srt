@@ -244,7 +244,7 @@
         sha: idx.sha,
       });
 
-      status('Published! The flyer will appear on the homepage once GitHub Pages redeploys (usually under a minute). It auto-archives after ' + date + '.', 'ok');
+      status('Published! The flyer will appear on the website homepage at https://raghunathtemple.org within a minute. It auto-archives after ' + date + '.', 'ok');
       $('publishForm').reset();
       $('preview').innerHTML = '';
       currentFile = null;
