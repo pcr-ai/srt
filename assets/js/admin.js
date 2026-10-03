@@ -41,8 +41,9 @@
 
   // Token is remembered on this device so it is entered only once.
   // It is NOT committed to the site; it never leaves this browser.
-  // Strip whitespace/newlines so pasted tokens don't break the HTTP header.
-  const cleanToken = (t) => String(t || '').replace(/\s+/g, '');
+  // GitHub tokens only contain [A-Za-z0-9_]; strip anything else (hidden
+  // chars from copy/paste) so they can't corrupt the HTTP auth header.
+  const cleanToken = (t) => String(t || '').replace(/[^A-Za-z0-9_]/g, '');
   function getToken() { return cleanToken(localStorage.getItem(TOKEN_KEY)); }
   function setToken(t) {
     const v = cleanToken(t);
@@ -249,7 +250,14 @@
       currentFile = null;
       setTimeout(loadFlyers, 1500);
     } catch (err) {
-      status('Publish failed — ' + err.message, 'err');
+      const m = String(err.message || err);
+      // Bad/expired/corrupted token — forget it so the next try asks for a fresh one.
+      if (/Invalid value|401|403|Bad credentials/i.test(m)) {
+        setToken('');
+        status('Publish failed — the saved token was invalid and has been cleared. Click Publish again and paste a fresh GitHub token. (' + m + ')', 'err');
+      } else {
+        status('Publish failed — ' + m, 'err');
+      }
     }
   });
 
