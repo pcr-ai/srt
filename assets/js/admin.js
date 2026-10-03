@@ -41,9 +41,12 @@
 
   // Token is remembered on this device so it is entered only once.
   // It is NOT committed to the site; it never leaves this browser.
-  function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
+  // Strip whitespace/newlines so pasted tokens don't break the HTTP header.
+  const cleanToken = (t) => String(t || '').replace(/\s+/g, '');
+  function getToken() { return cleanToken(localStorage.getItem(TOKEN_KEY)); }
   function setToken(t) {
-    if (t) localStorage.setItem(TOKEN_KEY, t);
+    const v = cleanToken(t);
+    if (v) localStorage.setItem(TOKEN_KEY, v);
     else localStorage.removeItem(TOKEN_KEY);
   }
 
@@ -189,8 +192,8 @@
     // Token is handled internally: remembered on this device, prompted once if missing.
     let token = getToken();
     if (!token) {
-      token = (prompt('One-time setup: paste a GitHub fine-grained token (Contents: Read and write) to publish live. Leave blank to just download the image + snippet.') || '').trim();
-      setToken(token);
+      setToken(prompt('One-time setup: paste a GitHub fine-grained token (Contents: Read and write) to publish live. Leave blank to just download the image + snippet.'));
+      token = getToken();
     }
 
     // ---- Fallback (no GitHub token): download image + show snippet ----
@@ -209,6 +212,7 @@
     }
 
     // ---- Live publish via GitHub API ----
+    $('snippetBox').hidden = true;
     try {
       status('Uploading image to the repository…');
       const imgB64 = await fileToB64(currentFile);
